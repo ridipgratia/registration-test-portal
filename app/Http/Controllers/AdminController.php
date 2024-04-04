@@ -8,6 +8,9 @@ use Illuminate\Suppport\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function index(){
+        return view('admin.home');
+    }
     public function showLoginForm()
     {
         return view('admin.login');
@@ -19,7 +22,7 @@ class AdminController extends Controller
 
         if(Auth::guard('admin')->attempt($credentials)) {
             //authentication passed
-            return redirect()->intended('/admin/home');
+            return redirect()->intended('/admin/dashboard');
         }
             return redirect('/admin/login')->with('error', 'Invalid Credentials');  //authentication failed
     }
