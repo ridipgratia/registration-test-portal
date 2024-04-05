@@ -34,5 +34,6 @@ class AdminAuthController extends Controller {
             }
         }
         return response()->json( [ 'status'=>$status, 'message'=>$message ] );
+        //  return response()->json( [ 'error' => 'Unauthorized' ], 401 );
     }
 }
