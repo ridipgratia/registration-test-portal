@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
-class AdminAuthController extends Controller {
+class EmployeeAuthController extends Controller {
+
     public function login( Request $request ) {
         $credentials = $request->only( 'email', 'password' );
         $status = 400;
@@ -26,15 +27,19 @@ class AdminAuthController extends Controller {
         if ( $validator->fails() ) {
             $message = $validator->errors()->all();
         } else {
-            if ( Auth::guard( 'admin' )->attempt( $credentials ) ) {
+            try {
+                if ( Auth::guard( 'employee' )->attempt( $credentials ) ) {
 
-                $user = Auth::guard('admin')->user();
-                Auth::guard('admin')->login($user);
-                $message="Login Successfull";
-                $status=200;
+                    //$user = Auth::guard( 'employee' )->user();
+                    //  Auth::guard( 'employee' )->login( $user );
+                    $message = 'Login Successfull';
+                    $status = 200;
 
-            } else {
-                array_push($message,'Credential not matched');
+                } else {
+                    array_push( $message, 'Credential not matched' );
+                }
+            } catch( Exception $err ) {
+                array_push( $message, 'Server error please try later ' );
             }
         }
         return response()->json( [ 'status'=>$status, 'message'=>$message ] );

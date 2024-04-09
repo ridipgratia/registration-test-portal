@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Middleware\AdminAuthenticate;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeAuthController;
 
-//  Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.home')->middleware(AdminAuthenticate::class);
+ //->middleware(AdminAuthenticate::class);
 //  Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-//  Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
+// Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
 // Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
 /*
@@ -26,5 +28,11 @@ use App\Http\Middleware\AdminAuthenticate;
 // });
 // Route::post('/admin/login', 'AdminController@login');
 // Route::post('/admin/logout', 'AdminController@logout');
+
+//Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.home');
+//->middleware(AdminAuthenticate::class);
+// Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+//Route::post('/employee/login', [EmployeeAuthController::class, 'login'])->name('employee.login.submit');
+
 require __DIR__ . '/frontend.php';
 require __DIR__ . '/backend.php';

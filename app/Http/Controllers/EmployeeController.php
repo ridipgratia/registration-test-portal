@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Suppport\Facades\Auth;
 
-
-class AdminController extends Controller
+class EmployeeController extends Controller
 {
     public function index(){
-        return view('admin.home');
+        return view('employee.employeehome');
     }
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('employee_login');
     }
 
 
