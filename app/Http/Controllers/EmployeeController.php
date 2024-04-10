@@ -13,6 +13,11 @@ class EmployeeController extends Controller
     {
         return view('employee_login');
     }
+    public function showRegistrationForm()
+    {
+        return view('employee_registration');
+    }
+
 
 
 }
