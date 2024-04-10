@@ -15,7 +15,7 @@ class EmployeeRegistrationController extends Controller {
         $status = 400;
         $error_message = [
             'required'=>':attribute is required field',
-            'email'=>':attribute is a email id type',
+            'email'=>':attribute is an email id type',
         ];
         $validator = Validator::make( $request->all(),
         [
@@ -29,7 +29,7 @@ class EmployeeRegistrationController extends Controller {
             array_push( $message, $validator->errors()->all() );
         } else {
             try {
-                if ( Employee::where( 'emal', $request->email )->first() ) {
+                if ( Employee::where( 'email', $request->email )->first() ) {
                     array_push( $message, 'Email id already exists !' );
                 } else {
                     $employee = new Employee();
@@ -37,6 +37,7 @@ class EmployeeRegistrationController extends Controller {
                     $employee->email = $request->email;
                     $employee->password = Hash::make( $request->password );
                     $employee->save();
+                    $status=200;
                     array_push( $message, 'Ok !' );
                 }
             } catch( Exception $err ) {
